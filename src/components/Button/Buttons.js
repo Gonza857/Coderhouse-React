@@ -2,13 +2,13 @@ import "./buttons.css";
 import React, { useState } from "react";
 
 function Button(props) {
-  let estilo = { backgroundColor: "red" };
+  let estilo = { color: "red" };
 
   const [color, setColor] = useState(estilo);
 
-  const handleClick = () => {
-    setColor((estilo = { backgroundColor: "#fff" }));
-  };
+  const handleClick =() => {
+    setColor((estilo = { color: "#fff" }));
+  }
 
   return (
     <a href="#" style={color} onClick={handleClick}>
