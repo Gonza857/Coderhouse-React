@@ -1,19 +1,12 @@
-import "./buttons.css";
-import React, { useState } from "react";
+import React from "react";
+// import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-function Button(props) {
-  let estilo = { color: "red" };
-
-  const [color, setColor] = useState(estilo);
-
-  const handleClick =() => {
-    setColor((estilo = { color: "#fff" }));
-  }
-
+function Button({ text }) {
   return (
-    <a href="#" style={color} onClick={handleClick}>
-      {props.text}
-    </a>
+    <Link>
+      <Button>{text}</Button>
+    </Link>
   );
 }
 

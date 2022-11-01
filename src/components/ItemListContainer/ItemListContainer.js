@@ -1,25 +1,35 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState, useEffect } from "react";
 import ItemList from "../ItemList/ItemList";
+import styled from "styled-components";
+// import Item from "../Item/Item";
+// import { getAllProducts } from "../mockService/mockService";
 
-const CardContainer = styled.div`
+const ItemContainer = styled.div`
   display: flex;
   width: 80%;
-  flex-direction: row;
-  gap: 5px;
+  flex-direction: column;
   justify-content: space-evenly;
   align-self: center;
   flex-wrap: wrap;
+  border: 1px solid blue;
 `;
 
-function ItemListContainer({ greeting }) {
+function ItemListContainer() {
+  const [itemsApi, setItemsApi] = useState([]);
+
+  async function getAllProducts() {
+    let response = await fetch("https://fakestoreapi.com/products");
+    let result = await response.json();
+    setItemsApi(result);
+  }
+  useEffect(() => {
+    getAllProducts();
+  }, []);
+
   return (
-    <>
-      <h1>{greeting}</h1>
-      <CardContainer>
-        <ItemList/>
-      </CardContainer>
-    </>
+    <ItemContainer>
+      <ItemList data={itemsApi} />
+    </ItemContainer>
   );
 }
 
