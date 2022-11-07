@@ -2,13 +2,14 @@ import React from "react";
 import CartWidget from "../CartWidget/CartWidget";
 import Logo from "../Logo/Logo";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import Button from "../Button/Buttons";
 
-const UserAccount = styled.div`
-  width: 15%;
-  display: flex;
-  justify-content: space-around;
-`;
+// const UserAccount = styled.div`
+//   width: 15%;
+//   display: flex;
+//   justify-content: space-around;
+// `;
 
 const Nav = styled.nav`
   background-color: #123;
@@ -26,19 +27,36 @@ const NavbarLinks = styled.div`
   justify-content: space-around;
 `;
 
+const estiloBotonNavbar = {
+  backgroundColor: "unset",
+  color: "#fff",
+  border: "none",
+};
+
 function Navbar() {
   return (
     <Nav>
-      <Logo />
+      <Link to="/">
+        <Logo />
+      </Link>
       <NavbarLinks>
-        <Button text="Autos" hacia="/" />
-        <Button text="Motos" />
-        <Button text="Bicicletas" />
+        <Link to="/category/men's clothing">
+          <Button estilo={estiloBotonNavbar}>Hombre</Button>
+        </Link>
+        <Link to="/category/women's clothing">
+          <Button estilo={estiloBotonNavbar}>Mujer</Button>
+        </Link>
+        <Link to="/category/jewelery">
+          <Button estilo={estiloBotonNavbar}>Joyas</Button>
+        </Link>
+        <Link to="/category/electronics">
+          <Button estilo={estiloBotonNavbar}>Electrónica</Button>
+        </Link>
       </NavbarLinks>
-      <UserAccount>
-        <Button text="Iniciar sesión" />
-        <Button text="Registrate" />
-      </UserAccount>
+      {/* <UserAccount>
+        <Link to="">Iniciar sesión</Link>
+        <Link to="">Registrarse</Link>
+      </UserAccount> */}
       <CartWidget />
     </Nav>
   );

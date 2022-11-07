@@ -1,12 +1,10 @@
 import React from "react";
-// import styled from "styled-components";
-import { Link } from "react-router-dom";
 
-function Button({ text }) {
+function Button({ fn, children, estilo }) {
   return (
-    <Link>
-      <Button>{text}</Button>
-    </Link>
+    <>
+      <button style={estilo} onClick={fn}>{children}</button>
+    </>
   );
 }
 

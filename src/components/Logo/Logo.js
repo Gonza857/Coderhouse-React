@@ -1,13 +1,15 @@
 import React from "react";
-import "./logo.css";
+import styled from "styled-components";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCar } from "@fortawesome/free-solid-svg-icons";
+const LogoTienda = styled.h3`
+  font-weight: bold;
+  color: #fff;
+`;
 
 function Logo() {
   return (
     <>
-      <FontAwesomeIcon className="brandLogo" icon={faCar} />
+      <LogoTienda>Mi tienda</LogoTienda>
     </>
   );
 }

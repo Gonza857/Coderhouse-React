@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Counter from "../Counter/Counter";
 
 const Title = styled.h5`
   color: palevioletred;
@@ -23,15 +25,14 @@ const Card = styled.div`
 
 const ProductImgContainer = styled.div`
   width: 50%;
-
   margin: 0 auto;
 `;
 
 const ProductImg = styled.img`
   background-size: 100% 100%;
   background-position: center;
-  width: 100%;
-  height: 100%;
+  width: 80%;
+  height: 80%;
   padding: 0;
 `;
 
@@ -66,23 +67,33 @@ const Separator = styled.div`
   margin-top: 10px;
 `;
 
-function Item({ itemsApi }) {
+function Item({ data, mode }) {
+  let urlDetail = `/details/${data.id}`;
+  if (mode) {
+    console.log("tengo parametro true");
+  } else {
+    console.log("tengo parametro false");
+  }
   return (
     <Card>
       <Separator>
         <ProductImgContainer>
-          <ProductImg src={itemsApi.image} />
+          <ProductImg src={data.image} />
         </ProductImgContainer>
 
         <ProductInfoContainer>
-          <Title>{`${itemsApi.title}`}</Title>
-          <Text>{"$" + itemsApi.price}</Text>
+          <Title>{`${data.title}`}</Title>
+          <Text>{"$" + data.price}</Text>
+          <Text>{data.rating.rate}</Text>
         </ProductInfoContainer>
       </Separator>
       <BtnContainer>
-        <BtnVer>Ver</BtnVer>
+        <Link to={urlDetail}>
+          <BtnVer>Ver</BtnVer>
+        </Link>
         <BtnComprar>Comprar</BtnComprar>
       </BtnContainer>
+      {mode ? <Counter/> : <></>}
     </Card>
   );
 }
