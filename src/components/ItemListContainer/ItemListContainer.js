@@ -22,41 +22,15 @@ function ItemListContainer() {
   async function getAllProducts() {
     let response = await fetch("https://fakestoreapi.com/products");
     let result = await response.json();
-    // result.forEach((cosa) => {
-    //   let { category } = cosa;
-    //   let indice = category.indexOf("h");
-    //   if (indice > 0) {
-    //     let sacado = category.replace("'", "");
-    //     let juna = sacado.split(" ").join("");
-    //     cosa.category = juna;
-    //   }
-    // });
-    // console.log(result);
     setItemsApi(result);
   }
 
   async function getProductsByCategory() {
     let response = await fetch(`https://fakestoreapi.com/products`);
     let result = await response.json();
-    // result.forEach((cosa) => {
-    //   let { category } = cosa;
-    //   let indice = category.indexOf("h");
-    //   if (indice > 0) {
-    //     let sacado = category.replace("'", "");
-    //     let juna = sacado.split(" ").join("");
-    //     cosa.category = juna;
-    //   }
-    // });
+
     let search = result.filter((objeto) => objeto.category === categoryId);
     setItemsApi(search);
-    // console.log(result);
-    // console.log("gato");
-    // let search = result.filter((objeto) => objeto.category === categoryId);
-    // if (search.lenth > 0) {
-    //   setItemsApi(search);
-    // } else {
-    //   throw new Error("no capo");
-    // }
   }
 
   useEffect(() => {
