@@ -41,9 +41,6 @@ function ItemListContainer() {
     }
   }, [categoryId]);
 
-  console.log(categoryId);
-  console.table(itemsApi);
-
   return (
     <ItemContainer>
       <ItemList data={itemsApi} />
