@@ -18,7 +18,6 @@ function ItemDetailCointainer() {
   const [itemsApi, setItemsApi] = useState([]);
   let params = useParams();
   let paramsId = params.id;
-  console.log(paramsId);
 
   async function getSingleProduct(id) {
     let response = await fetch(`https://fakestoreapi.com/products`);
@@ -35,7 +34,6 @@ function ItemDetailCointainer() {
     setItemsApi(getSingleProduct(paramsId));
   }, []);
 
-  console.log(itemsApi);
 
   return (
     <>

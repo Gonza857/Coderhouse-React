@@ -67,13 +67,8 @@ const Separator = styled.div`
   margin-top: 10px;
 `;
 
-function Item({ data, mode }) {
+function Item({ data }) {
   let urlDetail = `/details/${data.id}`;
-  if (mode) {
-    console.log("tengo parametro true");
-  } else {
-    console.log("tengo parametro false");
-  }
   return (
     <Card>
       <Separator>
@@ -93,7 +88,7 @@ function Item({ data, mode }) {
         </Link>
         <BtnComprar>Comprar</BtnComprar>
       </BtnContainer>
-      {mode ? <Counter/> : <></>}
+      <Counter/>
     </Card>
   );
 }

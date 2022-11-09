@@ -11,11 +11,11 @@ const Autos = styled.div`
   flex-wrap: wrap;
 `;
 
-function ItemList({ data, mode }) {
+function ItemList({ data }) {
   return (
     <Autos>
       {data.map((product) => {
-        return <Item key={product.id} data={product} mode={mode} />;
+        return <Item key={product.id} data={product} />;
       })}
     </Autos>
   );

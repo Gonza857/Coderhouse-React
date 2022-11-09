@@ -1,4 +1,3 @@
-import { nominalTypeHack } from "prop-types";
 import React, { useState } from "react";
 import styled from "styled-components";
 import Button from "../Button/Buttons";
@@ -51,24 +50,19 @@ const estiloBotonSumar = {
     border: "none",
   };
 
-function Counter({ stock }) {
+function Counter({ stock, handleCart }) {
   const [counter, setCounter] = useState(0);
-  console.log(stock);
   const handleSumar = () => {
     if (stock === counter) {
       alert("no hay más stock para comprar");
     } else {
       setCounter(counter + 1);
-      console.log("sume 1");
     }
   };
   const handleRestar = () => {
     if (counter === 0) return;
     setCounter(counter - 1);
-    console.log("reste 1");
   };
-
- 
 
   return (
     <CounterContainer>
@@ -81,7 +75,7 @@ function Counter({ stock }) {
           +
         </Button>
       </CounterHandler>
-      <HandleCartButton>Agregar al carrito</HandleCartButton>
+      <HandleCartButton onClick={()=>{handleCart(counter)}}>Agregar al carrito</HandleCartButton>
     </CounterContainer>
   );
 }

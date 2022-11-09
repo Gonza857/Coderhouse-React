@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
+import Button from "../Button/Buttons";
 import Counter from "../Counter/Counter";
+import { cartContext } from "../../storage/CartContext";
 
 const DetailContainer = styled.div`
   display: flex;
@@ -43,7 +45,20 @@ const Description = styled.p`
   padding: 0 15px;
 `;
 
-function ItemDetail({ data, mode }) {
+function ItemDetail({ data }) {
+  const [isInCart, setIsInCart] = useState(false);
+  const { addToCart, cart } = useContext(cartContext);
+
+  function onAddToCart(count) {
+    const itemParaCart = {
+      ...data,
+      quantity: count,
+    };
+    addToCart(itemParaCart);
+    setIsInCart(true);
+    alert(`Se agregaron al carrito ${count} items`);
+  }
+
   return (
     <>
       <DetailContainer>
@@ -58,7 +73,16 @@ function ItemDetail({ data, mode }) {
             <p>Stock: {data.rating?.count}</p>
           </PriceAndCount>
           <p>Categoria: {data.category}</p>
-          <Counter stock={data.rating?.count}/>
+          {isInCart ? (
+            <>
+              <p>Ya hay algo</p>
+              <Button>Volver</Button>
+              <Button>Agregar más</Button>
+              <Button>Ver carrito</Button>
+            </>
+          ) : (
+            <Counter stock={data.rating?.count} handleCart={onAddToCart} />
+          )}
         </Details>
       </DetailContainer>
     </>
