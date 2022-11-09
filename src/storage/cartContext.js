@@ -34,11 +34,11 @@ export const CartContextProvider = (props) => {
     return totalItems;
   }
 
-  function removeItem() {}
+  //   function removeItem() {}
 
-  function clearCart() {}
+  //   function clearCart() {}
 
-  function totalCartPrice() {}
+  //   function totalCartPrice() {}
 
   const value = {
     itemsInCart,
