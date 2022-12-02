@@ -2,22 +2,23 @@ import React from "react";
 import styled from "styled-components";
 import Item from "../Item/Item";
 
-const Autos = styled.div`
+const Products = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
-  gap: 5px;
   justify-content: space-evenly;
   align-self: center;
   flex-wrap: wrap;
+  gap: 5px;
 `;
 
 function ItemList({ data }) {
   return (
-    <Autos>
+    <Products className="product-container">
       {data.map((product) => {
         return <Item key={product.id} data={product} />;
       })}
-    </Autos>
+    </Products>
   );
 }
 

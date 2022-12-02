@@ -1,0 +1,11 @@
+.cartWidget {
+    color: #fff;
+}
+
+.cartWidget-container {
+color: #fff;
+display: flex;
+align-items: center;
+justify-content: space-between;
+width: 40px;
+}

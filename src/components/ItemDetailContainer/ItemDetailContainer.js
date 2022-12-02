@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Item from "../Item/Item";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import ItemDetail from "./ItemDetail";
+import { getSingleProduct } from "../../firebase/firebase";
+import { JellyTriangle } from "@uiball/loaders";
 
 const ItemContainer = styled.div`
   display: flex;
@@ -11,34 +12,40 @@ const ItemContainer = styled.div`
   justify-content: space-evenly;
   align-self: center;
   flex-wrap: wrap;
-  border: 1px solid blue;
+`;
+const Titulo = styled.h1`
+  font-size: 100px;
+  color: red;
 `;
 
 function ItemDetailCointainer() {
   const [itemsApi, setItemsApi] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   let params = useParams();
   let paramsId = params.id;
 
-  async function getSingleProduct(id) {
-    let response = await fetch(`https://fakestoreapi.com/products`);
-    let result = await response.json();
-    let search = result.find((objeto) => objeto.id === Number(id));
-    if (search) {
-      setItemsApi(search);
-    } else {
-      throw new Error("no capo");
+  const getProduct = async (paramsId) => {
+    try {
+      let response = await getSingleProduct(paramsId);
+      setItemsApi(response);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
-    setItemsApi(getSingleProduct(paramsId));
-  }, []);
-
+    getProduct(paramsId);
+  }, [paramsId]);
 
   return (
     <>
       <ItemContainer>
-        <ItemDetail data={itemsApi} mode={true} />
+        {isLoading ? (
+          <JellyTriangle size={40} speed={1} color={"#123"} />
+        ) : (
+          <ItemDetail data={itemsApi} />
+        )}
       </ItemContainer>
     </>
   );

@@ -1,0 +1,31 @@
+.counter-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    height: fit-content;
+    gap: 30px;
+}
+
+.counter-handler {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #000;
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.counter-btn {
+    padding: 5px 10px;
+    border: none;
+    background-color: transparent;
+}
+
+.counter-text {
+    width: 30px;
+    height: 100%;
+    text-align: center;
+}

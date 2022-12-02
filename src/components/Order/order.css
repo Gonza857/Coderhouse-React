@@ -1,0 +1,41 @@
+/*  FORMULARIO    */
+
+.order-container {
+    width: 80%;
+    margin: auto;
+    border: 3px solid red;
+    display: flex;
+}
+
+.order-form-wrapper {
+    width: 50%;
+    border: 3px solid violet;
+
+}
+
+.order-form {
+    margin: auto;
+    width: 80%;
+    border: 3px solid green;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.order-form input {
+    width: 100%;
+}
+
+.order-form_name, .order-form_number, .order-form_mail {
+    border: 2px solid purple;
+    display: flex;
+    flex-direction: column;
+}
+
+/*  LISTA DE PRODUCTOS    */
+
+.formItems {
+    border: 1px solid red;
+    width: 80%;
+    padding: 0;
+}

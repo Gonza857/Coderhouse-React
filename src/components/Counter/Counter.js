@@ -1,26 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
-import Button from "../Button/Buttons";
-
-const CounterContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-content: center;
-  height: fit-content;
-  gap: 30px;
-`;
-
-const CounterHandler = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid #000;
-  margin: 0;
-  padding: 0;
-  border-radius: 100px;
-  overflow: hidden;
-`;
+import Button from "../Button/Button";
+import "./counter.css";
+import { cartContext } from "../../storage/CartContext";
+import Swal from "sweetalert2";
 
 const HandleCartButton = styled.button`
   width: fit-content;
@@ -33,50 +16,71 @@ const HandleCartButton = styled.button`
   padding: 5px 10px;
 `;
 
-const CounterText = styled.p`
-  margin: 0;
-  padding: 0 20px;
-`;
+function Counter({ stock, handleCart, item }) {
+  const [counter, setCounter] = useState(1);
+  const { cart } = useContext(cartContext);
 
-const estiloBotonSumar = {
-    backgroundColor: "#fff",
-    color: "#000",
-    border: "none",
-  };
+  // Funcion para buscar si este item esta en el carrito
+  function searchThisItemInCart() {
+    let search = cart.find((producto) => producto.id == item.id);
+    return search;
+  }
 
-  const estiloBotonRestar = {
-    backgroundColor: "#fff",
-    color: "#000",
-    border: "none",
-  };
-
-function Counter({ stock, handleCart }) {
-  const [counter, setCounter] = useState(0);
+  /* FUNCION PARA SUMAR AL CARRITO EL PRODUCTO
+  Si el counter es igual  a la cantidad de stock, devuelve alerta y no suma más.
+  Sino revisa que la cantidad agregegada no sea mayor al stock. Si es true, evalua nuevamente que la cantidad que estemos agregando no sea mayor la la diferencia de stock disponible. Si hay 10 de stock y ya agregamos 5, no nos permite agregar más de 5 unidades. Devuelve alerta para no agregar más
+  Si el counter es menor a esa diferencia, sigue sumando.
+  */
   const handleSumar = () => {
-    if (stock === counter) {
-      alert("no hay más stock para comprar");
-    } else {
+    let searchItem = searchThisItemInCart();
+    if (searchItem === undefined) {
+      if (stock === counter) {
+        Swal.fire({
+          icon: "error",
+          title: "No hay más stock disponible para agregar al carrito",
+        });
+        return;
+      }
       setCounter(counter + 1);
+    } else {
+      if (searchItem.quantity < stock) {
+        if (counter === stock - searchItem.quantity) {
+          Swal.fire({
+            icon: "error",
+            title: `No podes agregar más de ${counter} porque en tu carrito ya agregaste este producto.`,
+          });
+        } else {
+          setCounter(counter + 1);
+        }
+      }
     }
   };
+
+  // Funcion para restar del contaador, no puede  bajar de 1, para que o se agregue 0 productos.
   const handleRestar = () => {
-    if (counter === 0) return;
+    if (counter === 1) return;
     setCounter(counter - 1);
   };
 
   return (
-    <CounterContainer>
-      <CounterHandler>
-        <Button estilo={estiloBotonRestar} fn={handleRestar} color="yellow">
+    <div className="counter-container">
+      <div className="counter-handler">
+        <Button clase="counter-btn minus" fn={handleRestar}>
           -
         </Button>
-        <CounterText>{counter}</CounterText>
-        <Button estilo={estiloBotonSumar} fn={handleSumar} color="lightblue">
+        <p className="counter-text">{counter}</p>
+        <Button clase="counter-btn plus" fn={handleSumar}>
           +
         </Button>
-      </CounterHandler>
-      <HandleCartButton onClick={()=>{handleCart(counter)}}>Agregar al carrito</HandleCartButton>
-    </CounterContainer>
+      </div>
+      <HandleCartButton
+        onClick={() => {
+          handleCart(counter);
+        }}
+      >
+        Agregar al carrito
+      </HandleCartButton>
+    </div>
   );
 }
 
