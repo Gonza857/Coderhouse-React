@@ -1,12 +1,11 @@
 import React from "react";
 import "./orderItem.css";
 
-
-function OrderItem({item}) {
+function OrderItem({ item }) {
   return (
     <div className="formItem">
       <div className="formProduct-image-container">
-        <img src={item.image}/>
+        <img src={item.image} alt="Product Image" />
       </div>
       <div className="formProduct-details">
         <p>{item.title}</p>

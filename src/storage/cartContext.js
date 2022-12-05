@@ -9,7 +9,7 @@ export const CartContextProvider = (props) => {
 
   useEffect(() => {
     itemsInCart();
-  }, [cart]);
+  }, [cart, itemsInCart]);
 
   function addToCart(dataItem) {
     let searchItem = cart.find((item) => item.id === dataItem.id);
@@ -87,8 +87,20 @@ export const CartContextProvider = (props) => {
   }
 
   function clearCart() {
-    setCart([]);
-    setIsCartEmpty(true);
+    Swal.fire({
+      title: "¿Seguro que deseas vaciar el carrito?",
+      showDenyButton: true,
+      confirmButtonText: "Vaciar",
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Se vacío el carrito!", "", "success");
+        setCart([]);
+        setIsCartEmpty(true);
+      } else if (result.isDenied) {
+        Swal.fire("El carrito no fue vaciado", "", "info");
+      }
+    });
   }
 
   function totalCartPrice() {
@@ -96,6 +108,7 @@ export const CartContextProvider = (props) => {
     cart.forEach((item) => {
       totalPrice += item.quantity * item.price;
     });
+    totalPrice = Number(totalPrice.toFixed(2));
     return totalPrice;
   }
 
