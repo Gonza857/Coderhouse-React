@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import ItemDetail from "./ItemDetail";
+import ItemDetail from "../ItemDetail/ItemDetail";
 import { getSingleProduct } from "../../firebase/firebase";
 import { JellyTriangle } from "@uiball/loaders";
 

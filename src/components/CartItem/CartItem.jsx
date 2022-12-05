@@ -12,9 +12,13 @@ function CartItem({ item }) {
   allItemsPrice = Number(allItemsPrice.toFixed(2));
 
   return (
-    <CartItemContainer key={item.id}>
+    <CartItemContainer>
       <div className="cartItemImg">
-        <img src={item.image} className="product-image" alt="Product Image" />
+        <img
+          src={item.image}
+          className="product-image"
+          alt={`Image ${item.title}`}
+        />
       </div>
       <div className="cartItemDetails">
         <p className="cartItemTitle">{item.title}</p>

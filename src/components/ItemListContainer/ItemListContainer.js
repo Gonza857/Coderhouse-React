@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
-import ItemList from "./ItemList";
+import ItemList from "../ItemList/ItemList";
 import { JellyTriangle } from "@uiball/loaders";
 import { getAllProducts, getProductsByCategory } from "../../firebase/firebase";
 

@@ -22,7 +22,7 @@ function Counter({ stock, handleCart, item }) {
 
   // Funcion para buscar si este item esta en el carrito
   function searchThisItemInCart() {
-    let search = cart.find((producto) => producto.id == item.id);
+    let search = cart.find((producto) => producto.id === item.id);
     return search;
   }
 

@@ -44,16 +44,24 @@ export const CartContextProvider = (props) => {
   }
 
   function deleteAllUnits(item) {
-    const copyCart = [...cart];
-    let hola = copyCart.findIndex((product) => product.id === item.id);
-    copyCart.splice(hola, 1);
-    if (copyCart.length === 0) {
-      setIsCartEmpty(true);
-    }
-    setCart(copyCart);
     Swal.fire({
-      icon: "success",
-      text: "¡El producto fue eliminado correctamente!",
+      title: "Se eliminarán todas las unidades del producto del carrito.",
+      text: "¿Deseas continuar?",
+      icon: "warning",
+      showCancelButton: true,
+      cancelButtonText: "Cancelar",
+      confirmButtonText: "Eliminar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const copyCart = [...cart];
+        let hola = copyCart.findIndex((product) => product.id === item.id);
+        copyCart.splice(hola, 1);
+        setCart(copyCart);
+        Swal.fire("Eliminado", "Se eliminó el producto.", "success");
+        if (cart.length === 0) {
+          setIsCartEmpty(true);
+        }
+      }
     });
   }
 
@@ -147,12 +155,14 @@ export const CartContextProvider = (props) => {
   const value = {
     itemsInCart,
     addToCart,
+    setCart,
     cart,
     totalCartPrice,
     clearCart,
     deleteAllUnits,
     deleteSingleProduct,
     isCartEmpty,
+    setIsCartEmpty,
     addSingleProduct,
     isThisItemInCart,
     getItemInCartQuantity,

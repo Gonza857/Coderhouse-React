@@ -14,7 +14,7 @@ function ItemDetail({ data }) {
   function noStockAvaible() {
     let search = cart.find((obj) => obj.id === data.id);
     if (search !== undefined) {
-      if (search.quantity == search.rating.count) {
+      if (search.quantity === search.rating.count) {
         setNoStock(true);
       }
     }

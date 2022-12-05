@@ -11,8 +11,6 @@ import {
   addDoc,
 } from "firebase/firestore";
 import Swal from "sweetalert2";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -45,7 +43,16 @@ export async function getAllProducts() {
     });
     return products;
   } catch (error) {
-    console.log(error); //FIXME:
+    Swal.fire({
+      title: "Ocurrio un error, intentalo más tarde o recarga la pagina",
+      text: `Codigo de error${error.code}`,
+      confirmButtonText: "Entendido",
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.reload();
+      }
+    });
   }
 }
 
@@ -61,7 +68,16 @@ export async function getSingleProduct(id) {
       };
     }
   } catch (error) {
-    console.log(error);
+    Swal.fire({
+      title: "Ocurrio un error, intentalo más tarde o recarga la pagina",
+      text: `Codigo de error${error.code}`,
+      confirmButtonText: "Entendido",
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.reload();
+      }
+    });
   }
 }
 
@@ -78,7 +94,16 @@ export async function getProductsByCategory(categoryId) {
     });
     return products;
   } catch (error) {
-    console.log(error);
+    Swal.fire({
+      title: "Ocurrio un error, intentalo más tarde o recarga la pagina",
+      text: `Codigo de error${error.code}`,
+      confirmButtonText: "Entendido",
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.reload();
+      }
+    });
   }
 }
 
@@ -88,7 +113,16 @@ export async function postOrder(orderData) {
     const docRef = await addDoc(collectionRef, orderData);
     return docRef.id;
   } catch (error) {
-    console.log(error);
+    Swal.fire({
+      title: "Ocurrio un error, intentalo más tarde o recarga la pagina",
+      text: `Codigo de error${error.code}`,
+      confirmButtonText: "Entendido",
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.reload();
+      }
+    });
   }
 }
 

@@ -17,7 +17,15 @@ function CartDisplay() {
     navigate("/cart");
   }, [navigate]);
 
-  const { isCartEmpty } = useContext(cartContext);
+  const { isCartEmpty, setIsCartEmpty, cart } = useContext(cartContext);
+
+  useEffect(() => {
+    if (cart.length === 0) {
+      setIsCartEmpty(true);
+    } else {
+      setIsCartEmpty(false);
+    }
+  }, [cart, isCartEmpty]);
 
   return (
     <BuyCart>

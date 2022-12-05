@@ -13,7 +13,7 @@ function CartView() {
       <h5>Estas visualizando tu carrito de compras</h5>
       <div className="cartItems">
         {cart.map((item) => {
-          return <CartItem item={item} />;
+          return <CartItem item={item} key={item.id} />;
         })}
       </div>
       <div className="cartInfo">
