@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import React, { createContext, useState } from "react";
 import Swal from "sweetalert2";
 
 export const cartContext = createContext();
@@ -6,10 +6,6 @@ export const cartContext = createContext();
 export const CartContextProvider = (props) => {
   const [cart, setCart] = useState([]);
   const [isCartEmpty, setIsCartEmpty] = useState(true);
-
-  useEffect(() => {
-    itemsInCart();
-  }, [cart, itemsInCart]);
 
   function addToCart(dataItem) {
     let searchItem = cart.find((item) => item.id === dataItem.id);
