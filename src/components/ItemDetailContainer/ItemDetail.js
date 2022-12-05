@@ -2,9 +2,9 @@ import React, { useState, useContext, useEffect } from "react";
 import Button from "../Button/Button";
 import Counter from "../Counter/Counter";
 import { cartContext } from "../../storage/CartContext";
-import "./itemDetail.css";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 function ItemDetail({ data }) {
   const { addToCart, cart } = useContext(cartContext);
@@ -40,7 +40,7 @@ function ItemDetail({ data }) {
     let search = cart.find((obj) => obj.id === data.id);
     if (search !== undefined) {
       setIsInCart(true);
-    } else {;
+    } else {
       setIsInCart(false);
     }
   }
@@ -54,44 +54,43 @@ function ItemDetail({ data }) {
   }, [cart]);
 
   return (
-    <div className="itemDetail-container">
+    <ItemDetailContainer>
       <div className="itemDetail-img">
         <img src={data.image} />
       </div>
       <div className="itemDetail-info">
-        <h3 className="itemDetail-info_title">{data.title}</h3>
-        <p className="itemDetail-info_category">Categoria: {data.category}</p>
-        <p className="itemDetail-info_description">
+        <h3 className="itemDeailt-title">{data.title}</h3>
+        <p className="itemDetail-category">Categoria: {data.category}</p>
+        <p className="itemDetail-description">
           {data.description} <br />
         </p>
-        <div className="itemDetail-info-price">
-          <p className="itemDetail-info_p1">Precio: ${data.price}</p>
-          <p className="itemDetail-info_p2">Stock: {data.rating.count}</p>
+        <div className="itemDetail-price">
+          <p>Precio: ${data.price}</p>
+          <p>Stock: {data.rating.count}</p>
         </div>
-        <div className="lastBlock">
+        <div className="itemDetail-handleCart">
           {noStock ? (
             <>
               <p className="noStockText">
                 No hay más productos disponibles para agregar, revisa tu carro
                 de compras.
               </p>
-              <Link to="/cart" className="itemDetail-alert-button">
-                Ir al carrito
+              <Link to="/cart">
+                <Button>Ir al carrito</Button>
               </Link>
             </>
           ) : (
             <>
               {isInCart ? (
-                <div className="itemDetai-alert">
+                <div className="itemIsOnCart">
                   <p>Este elemento ya esta en tu carrito ¿Deseas añadir más?</p>
-                  <button
-                    className="itemDetail-alert-button"
-                    onClick={() => {
+                  <Button
+                    fn={() => {
                       setIsInCart(false);
                     }}
                   >
                     Deseo añadir más
-                  </button>
+                  </Button>
                 </div>
               ) : (
                 <div className="itemDetail-counter">
@@ -106,14 +105,74 @@ function ItemDetail({ data }) {
           )}
         </div>
       </div>
-    </div>
+    </ItemDetailContainer>
   );
 }
 
 export default ItemDetail;
 
-<div className="itemDetail-links">
-  <p>Ya hay algo</p>
-  <Button>Volver</Button>
-  <Button>Ver carrito</Button>
-</div>;
+const ItemDetailContainer = styled.div`
+  margin-top: 50px;
+  padding: 5px;
+  height: 350px;
+  display: flex;
+  flex-direction: row;
+  border-radius: 20px;
+  border: 0.5px solid #c7c7c7;
+  .itemDetail-img {
+    width: 50%;
+    height: 100%;
+    padding: 10px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+  .itemDetail-info {
+    border-left: 0.5px solid #c7c7c7;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    .itemDeailt-title {
+      text-align: center;
+      padding: 0px 20px;
+    }
+    .itemDetail-category {
+      text-align: center;
+    }
+    .itemDetail-description {
+      text-align: center;
+      padding: 0 15px;
+      font-size: 13px;
+    }
+    .itemDetail-price {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+    }
+    .itemDetail-handleCart {
+      display: grid;
+      justify-items: center;
+      .noStockText {
+        text-align: center;
+        border: 3px solid red;
+        padding: 10px 0px;
+        margin-bottom: 10px;
+      }
+      .itemIsOnCart {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        p {
+          text-align: center;
+        }
+      }
+      .itemDetail-counter {
+        display: grid;
+        justify-content: center;
+      }
+    }
+  }
+`;

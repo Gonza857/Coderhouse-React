@@ -10,7 +10,7 @@ function CartView() {
 
   return (
     <CartItemContainer>
-      <h5>Estas visualziando tu carrito de compras</h5>
+      <h5>Estas visualizando tu carrito de compras</h5>
       <div className="cartItems">
         {cart.map((item) => {
           return <CartItem item={item} />;

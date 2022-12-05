@@ -65,11 +65,11 @@ function Counter({ stock, handleCart, item }) {
   return (
     <div className="counter-container">
       <div className="counter-handler">
-        <Button clase="counter-btn minus" fn={handleRestar}>
+        <Button counterBtn={true} fn={handleRestar}>
           -
         </Button>
         <p className="counter-text">{counter}</p>
-        <Button clase="counter-btn plus" fn={handleSumar}>
+        <Button counterBtn={true} fn={handleSumar}>
           +
         </Button>
       </div>

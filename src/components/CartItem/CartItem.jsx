@@ -61,6 +61,7 @@ const CartItemContainer = styled.div`
   margin: 15px 0;
   padding: 10px;
   border: 0.5px solid #c7c7c7;
+  border-radius: 20px;
   .cartItemImg {
     width: 25%;
     height: 100%;

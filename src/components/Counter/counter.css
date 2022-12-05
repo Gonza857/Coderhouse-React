@@ -18,12 +18,6 @@
     overflow: hidden;
 }
 
-.counter-btn {
-    padding: 5px 10px;
-    border: none;
-    background-color: transparent;
-}
-
 .counter-text {
     width: 30px;
     height: 100%;

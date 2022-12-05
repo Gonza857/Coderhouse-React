@@ -1,13 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./item.css";  
+import Button from "../Button/Button";
+import "./item.css";
 
 function Item({ data }) {
   let urlDetail = `/details/${data.id}`;
   return (
     <div className="productList-card">
       <div className="productList-img">
-        <img src={data.image} alt="img"/>
+        <img src={data.image} alt="img" />
       </div>
       <div className="productList-info">
         <h5 className="productList-info_title">{`${data.title}`}</h5>
@@ -18,7 +19,7 @@ function Item({ data }) {
       </div>
       <div className="productList-buttons">
         <Link to={urlDetail}>
-          <button className="product-seeDetails">Ver producto</button>
+          <Button>Ver producto</Button>
         </Link>
       </div>
     </div>
