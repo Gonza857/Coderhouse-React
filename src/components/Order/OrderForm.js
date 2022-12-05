@@ -53,8 +53,6 @@ function OrderForm() {
     setIsOrderCompleted(true);
   };
 
-  console.log("tarazca")
-
   return (
     <>
       {isLoading ? (

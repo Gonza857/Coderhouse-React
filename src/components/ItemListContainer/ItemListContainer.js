@@ -2,19 +2,8 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import ItemList from "./ItemList";
-import { JellyTriangle } from '@uiball/loaders'
+import { JellyTriangle } from "@uiball/loaders";
 import { getAllProducts, getProductsByCategory } from "../../firebase/firebase";
-
-const ItemContainer = styled.div`
-  display: flex;
-  width: 80%;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-content: center;
-  align-self: center;
-  flex-wrap: wrap;
-  margin-top: 20px;
-`;
 
 function ItemListContainer() {
   const [itemsApi, setItemsApi] = useState([]);
@@ -27,7 +16,7 @@ function ItemListContainer() {
       setItemsApi(response);
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
+      console.log(error); //FIXME:
     }
   };
 
@@ -50,9 +39,11 @@ function ItemListContainer() {
   }, [categoryId]);
 
   return (
-    <ItemContainer className="real-container">
+    <ItemContainer>
       {isLoading ? (
-        <JellyTriangle size={40} speed={1} color={"#123"} />
+        <div className="itemListLoader">
+          <JellyTriangle size={40} speed={1} color={"#123"} />
+        </div>
       ) : (
         <ItemList data={itemsApi} />
       )}
@@ -61,3 +52,20 @@ function ItemListContainer() {
 }
 
 export default ItemListContainer;
+
+const ItemContainer = styled.div`
+  margin: auto;
+  display: flex;
+  width: 80%;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-content: center;
+  align-self: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  .itemListLoader {
+    height: calc(100vh - 120px);
+    display: grid;
+    align-content: center;
+  }
+`;

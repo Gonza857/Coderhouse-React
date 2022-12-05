@@ -45,7 +45,7 @@ export async function getAllProducts() {
     });
     return products;
   } catch (error) {
-    console.log(error);
+    console.log(error); //FIXME:
   }
 }
 
@@ -59,8 +59,6 @@ export async function getSingleProduct(id) {
         ...docSnap.data(),
         id: docSnap.id,
       };
-    } else {
-      console.log("nada gato");
     }
   } catch (error) {
     console.log(error);

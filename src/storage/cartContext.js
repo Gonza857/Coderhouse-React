@@ -8,15 +8,12 @@ export const CartContextProvider = (props) => {
   const [isCartEmpty, setIsCartEmpty] = useState(true);
 
   useEffect(() => {
-    console.log(cart);
     itemsInCart();
   }, [cart]);
 
   function addToCart(dataItem) {
-    console.log("addToCart() ejecutado");
     let searchItem = cart.find((item) => item.id === dataItem.id);
     if (searchItem === undefined) {
-      console.log("el item no estaba en el carrito");
       let newCart = [...cart];
       newCart.push(dataItem);
       setCart(newCart);
@@ -31,7 +28,6 @@ export const CartContextProvider = (props) => {
           return item;
         }
       });
-      console.log("el item ya estaba en el carrito");
       setCart(newCart);
       setIsCartEmpty(false);
       // setCart((newCart) => {
@@ -44,7 +40,6 @@ export const CartContextProvider = (props) => {
   function itemsInCart() {
     let totalItems = 0;
     cart.forEach((item) => (totalItems += item.quantity));
-    console.log(totalItems);
     return <span>{totalItems}</span>;
   }
 
@@ -124,19 +119,15 @@ export const CartContextProvider = (props) => {
 
   function isThisItemInCart(itemDado) {
     let search = cart.find((product) => product.id === itemDado.id);
-    console.log(search);
     if (search !== undefined) {
-      console.log("esta ya en el carrito este item");
       return true;
     } else {
-      console.log("no esta en el carrito este item");
       return false;
     }
   }
 
   function getItemInCartQuantity(data) {
     let search = cart.filter((producto) => producto.id === data.id);
-    console.log(search);
     return search;
   }
 

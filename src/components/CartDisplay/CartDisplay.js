@@ -12,6 +12,7 @@ const BuyCart = styled.main`
   border: 3px solid blue;
   width: 80%;
   margin: auto;
+  margin-top: 20px;
 `;
 
 function CartDisplay() {
@@ -31,7 +32,7 @@ function CartDisplay() {
   } = useContext(cartContext);
 
   return (
-    <BuyCart className="hola">
+    <BuyCart>
       {isCartEmpty ? (
         <>
           <EmptyCart />

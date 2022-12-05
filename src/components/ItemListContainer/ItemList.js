@@ -9,12 +9,12 @@ const Products = styled.div`
   justify-content: space-evenly;
   align-self: center;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 15px;
 `;
 
 function ItemList({ data }) {
   return (
-    <Products className="product-container">
+    <Products>
       {data.map((product) => {
         return <Item key={product.id} data={product} />;
       })}

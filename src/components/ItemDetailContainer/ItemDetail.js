@@ -36,26 +36,16 @@ function ItemDetail({ data }) {
     });
   }
 
-  function getThisProductQuantity() {
-    let search = cart.find((objeto) => (objeto.id = data.id));
-    console.log(search);
-  }
-
   function isItemInCart() {
-    console.log(cart);
     let search = cart.find((obj) => obj.id === data.id);
     if (search !== undefined) {
-      console.log("ItemDetail -> Ya estaba en el carrito");
       setIsInCart(true);
-    } else {
-      console.log("ItemDetail -> No esta en el carrito", data);
+    } else {;
       setIsInCart(false);
     }
   }
 
   useEffect(() => {
-    console.log("El titulo del producto es ", data.title);
-    console.log("El ID del producto es ", data.id);
     isItemInCart();
   }, []);
 

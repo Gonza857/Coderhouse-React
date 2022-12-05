@@ -5,19 +5,6 @@ import ItemDetail from "./ItemDetail";
 import { getSingleProduct } from "../../firebase/firebase";
 import { JellyTriangle } from "@uiball/loaders";
 
-const ItemContainer = styled.div`
-  display: flex;
-  width: 80%;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-self: center;
-  flex-wrap: wrap;
-`;
-const Titulo = styled.h1`
-  font-size: 100px;
-  color: red;
-`;
-
 function ItemDetailCointainer() {
   const [itemsApi, setItemsApi] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -30,7 +17,7 @@ function ItemDetailCointainer() {
       setItemsApi(response);
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
+      console.log(error); //FIXME:
     }
   };
 
@@ -42,7 +29,9 @@ function ItemDetailCointainer() {
     <>
       <ItemContainer>
         {isLoading ? (
-          <JellyTriangle size={40} speed={1} color={"#123"} />
+          <div className="itemDetailLoader">
+            <JellyTriangle size={40} speed={1} color={"#123"} />
+          </div>
         ) : (
           <ItemDetail data={itemsApi} />
         )}
@@ -52,3 +41,20 @@ function ItemDetailCointainer() {
 }
 
 export default ItemDetailCointainer;
+
+const ItemContainer = styled.div`
+  display: flex;
+  margin: auto;
+  width: 80%;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-self: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  .itemDetailLoader {
+    height: calc(100vh - 120px);
+    display: grid;
+    align-content: center;
+    justify-content: center;
+  }
+`;
