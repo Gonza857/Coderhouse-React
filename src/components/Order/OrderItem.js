@@ -8,7 +8,7 @@ function OrderItem({ item }) {
   return (
     <OrderItemContainer>
       <div className="orderItem-img">
-        <img src={item.image} alt={`Image ${item.title}`} />
+        <img src={item.image} alt={item.title} />
       </div>
       <div className="orderItem-details">
         <p className="orderItem-title">{item.title}</p>

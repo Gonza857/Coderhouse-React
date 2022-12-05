@@ -14,11 +14,7 @@ function CartItem({ item }) {
   return (
     <CartItemContainer>
       <div className="cartItemImg">
-        <img
-          src={item.image}
-          className="product-image"
-          alt={`Image ${item.title}`}
-        />
+        <img src={item.image} className="product-image" alt={item.title} />
       </div>
       <div className="cartItemDetails">
         <p className="cartItemTitle">{item.title}</p>

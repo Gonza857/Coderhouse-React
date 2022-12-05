@@ -25,7 +25,7 @@ function CartDisplay() {
     } else {
       setIsCartEmpty(false);
     }
-  }, [cart, isCartEmpty]);
+  }, [cart, isCartEmpty, setIsCartEmpty]);
 
   return (
     <BuyCart>

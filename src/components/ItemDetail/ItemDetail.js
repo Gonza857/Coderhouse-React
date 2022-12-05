@@ -11,15 +11,6 @@ function ItemDetail({ data }) {
   const [isInCart, setIsInCart] = useState(false);
   const [noStock, setNoStock] = useState(false);
 
-  function noStockAvaible() {
-    let search = cart.find((obj) => obj.id === data.id);
-    if (search !== undefined) {
-      if (search.quantity === search.rating.count) {
-        setNoStock(true);
-      }
-    }
-  }
-
   function onAddToCart(count) {
     // Si se esta queriendo agregar más de lo que hay al carrito, alerta
     // Si no esta en el carrito, que pueda agregar todo el stock
@@ -36,27 +27,24 @@ function ItemDetail({ data }) {
     });
   }
 
-  function isItemInCart() {
+  useEffect(() => {
     let search = cart.find((obj) => obj.id === data.id);
     if (search !== undefined) {
       setIsInCart(true);
     } else {
       setIsInCart(false);
     }
-  }
-
-  useEffect(() => {
-    isItemInCart();
-  }, []);
-
-  useEffect(() => {
-    noStockAvaible();
-  }, [cart]);
+    if (search !== undefined) {
+      if (search.quantity === search.rating.count) {
+        setNoStock(true);
+      }
+    }
+  }, [cart, data.id]);
 
   return (
     <ItemDetailContainer>
       <div className="itemDetail-img">
-        <img src={data.image} />
+        <img src={data.image} alt={data.title} />
       </div>
       <div className="itemDetail-info">
         <h3 className="itemDeailt-title">{data.title}</h3>
