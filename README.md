@@ -2,7 +2,7 @@
 
 Este proyecto esta enfocado para un comercio que se quiera extender de forma digital con un sitio web e-commerce.
 
-## Funcionalidades
+### Funcionalidades
 - Ver todos los items
 - Ver items por categoria
 - Ver items detallados
@@ -20,5 +20,8 @@ Este proyecto esta enfocado para un comercio que se quiera extender de forma dig
     - FontAwesome
     - Styled componentes
 - Base de datos: Firebase Storage
+
+### Deploy del proyecto
+- Netlify: https://reactcoder-ecom-gonzalo-r.netlify.app/
 
 ### Autor: Gonzalo Ramos
