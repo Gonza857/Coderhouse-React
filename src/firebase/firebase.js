@@ -47,7 +47,6 @@ export async function getAllProducts() {
       title: "Ocurrio un error, intentalo más tarde o recarga la pagina",
       text: `Codigo de error${error.code}`,
       confirmButtonText: "Entendido",
-      denyButtonText: `Don't save`,
     }).then((result) => {
       if (result.isConfirmed) {
         window.location.reload();
@@ -72,7 +71,6 @@ export async function getSingleProduct(id) {
       title: "Ocurrio un error, intentalo más tarde o recarga la pagina",
       text: `Codigo de error${error.code}`,
       confirmButtonText: "Entendido",
-      denyButtonText: `Don't save`,
     }).then((result) => {
       if (result.isConfirmed) {
         window.location.reload();
@@ -98,7 +96,6 @@ export async function getProductsByCategory(categoryId) {
       title: "Ocurrio un error, intentalo más tarde o recarga la pagina",
       text: `Codigo de error${error.code}`,
       confirmButtonText: "Entendido",
-      denyButtonText: `Don't save`,
     }).then((result) => {
       if (result.isConfirmed) {
         window.location.reload();
@@ -117,7 +114,6 @@ export async function postOrder(orderData) {
       title: "Ocurrio un error, intentalo más tarde o recarga la pagina",
       text: `Codigo de error${error.code}`,
       confirmButtonText: "Entendido",
-      denyButtonText: `Don't save`,
     }).then((result) => {
       if (result.isConfirmed) {
         window.location.reload();

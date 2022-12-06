@@ -40,7 +40,6 @@ export const CartContextProvider = (props) => {
   }
 
   function deleteAllUnits(item) {
-    console.log("deleteAllUnits() ejecuted");
     Swal.fire({
       title: "Se eliminarán todas las unidades del producto del carrito.",
       text: "¿Deseas continuar?",

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import ItemDetail from "../ItemDetail/ItemDetail";
 import { getSingleProduct } from "../../firebase/firebase";
 import { JellyTriangle } from "@uiball/loaders";
+import Swal from 'sweetalert2'
 
 function ItemDetailCointainer() {
   const [itemsApi, setItemsApi] = useState([]);
@@ -17,7 +18,15 @@ function ItemDetailCointainer() {
       setItemsApi(response);
       setIsLoading(false);
     } catch (error) {
-      console.log(error); //FIXME:
+      Swal.fire({
+        title: "Ocurrio un error, intentalo más tarde o recarga la pagina",
+        text: `Codigo de error${error.code}`,
+        confirmButtonText: "Entendido",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload();
+        }
+      });
     }
   };
 

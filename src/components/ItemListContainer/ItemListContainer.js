@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import ItemList from "../ItemList/ItemList";
 import { JellyTriangle } from "@uiball/loaders";
 import { getAllProducts, getProductsByCategory } from "../../firebase/firebase";
+import Swal from "sweetalert2";
 
 function ItemListContainer() {
   const [itemsApi, setItemsApi] = useState([]);
@@ -16,17 +17,32 @@ function ItemListContainer() {
       setItemsApi(response);
       setIsLoading(false);
     } catch (error) {
-      console.log(error); //FIXME:
+      Swal.fire({
+        title: "Ocurrio un error, intentalo más tarde o recarga la pagina",
+        text: `Codigo de error${error.code}`,
+        confirmButtonText: "Entendido",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload();
+        }
+      });
     }
   };
-
   const allProducts = async () => {
     try {
       let response = await getAllProducts();
       setItemsApi(response);
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
+      Swal.fire({
+        title: "Ocurrio un error, intentalo más tarde o recarga la pagina",
+        text: `Codigo de error${error.code}`,
+        confirmButtonText: "Entendido",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload();
+        }
+      });
     }
   };
 
