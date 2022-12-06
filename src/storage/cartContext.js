@@ -40,6 +40,7 @@ export const CartContextProvider = (props) => {
   }
 
   function deleteAllUnits(item) {
+    console.log("deleteAllUnits() ejecuted");
     Swal.fire({
       title: "Se eliminarán todas las unidades del producto del carrito.",
       text: "¿Deseas continuar?",
@@ -63,21 +64,7 @@ export const CartContextProvider = (props) => {
 
   function deleteSingleProduct(item) {
     if (item.quantity === 1) {
-      Swal.fire({
-        title: "Se eliminará el producto del carrito",
-        text: "¿Deseas continuar?",
-        icon: "warning",
-        showCancelButton: true,
-        cancelButtonText: "Cancelar",
-        confirmButtonText: "Eliminar",
-      })
-        .then((result) => {
-          if (result.isConfirmed) {
-            deleteAllUnits(item);
-            Swal.fire("Eliminado", "Se eliminó el producto.", "success");
-          }
-        })
-        .catch((error) => console.log(error));
+      deleteAllUnits(item);
       return;
     } else if (item.quantity === 0) return;
     let copyCart = [...cart];
